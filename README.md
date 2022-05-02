@@ -4,11 +4,12 @@
 
 Pixel-War is an app made with [React Native](https://reactnative.dev/) for a second year project at ENSAI. 
 
-<center>
-<img src="./ressources_out/screenshot_demo.jpg" alt="drawing" width="180"/>
-
+<p align="center">
+    <img src="./ressources_out/screenshot_demo.jpg" alt="drawing" width="180"/>
+</p>
+<p align="center">
 The app currently look like this
-</center>
+</p>
 
 ## Performance Optimization
 
