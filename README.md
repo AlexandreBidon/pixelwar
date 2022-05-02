@@ -14,6 +14,13 @@ The app currently look like this
 ## Performance Optimization
 
 
+The application was really slow in the first version. In fact, each pixel was rerendered every time a new color was choosen. In order to reduce the number of rendering, the method ``shouldComponentUpdate`` was used. Now a pixel is rerendered only the next color is different from the current one.
+
+## TODO
+
+- Add a timer on client side
+- Transform function objects to class
+- Optimize the app with ``shouldComponentUpdate``.
 
 ## Known Issues
  
