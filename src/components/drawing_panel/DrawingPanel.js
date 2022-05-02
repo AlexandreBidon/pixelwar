@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 {/*import "./../styles/drawingPanel.scss";*/ }
-import Row from "./Row";
+import Row from "../drawing_panel/Row";
 // import { exportComponentAsPNG } from "react-component-export-image";
 
 import {

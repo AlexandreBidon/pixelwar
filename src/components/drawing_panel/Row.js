@@ -1,4 +1,6 @@
 import React from "react";
+// import "./../styles/row.scss";
+import Pixel from "../drawing_panel/pixel";
 
 import {
     SafeAreaView,
@@ -10,10 +12,9 @@ import {
     View,
 } from 'react-native';
 
-
-
-export default function Header(props) {
-    const { selectedColor } = props;
+export default function Row(props) {
+    const { y_id, selectedColor, length } = props;
+    let pixels = [];
 
     for (let i = 0; i < length; i++) {
         pixels.push(<Pixel key={i} x_id={i} y_id={y_id} selectedColor={selectedColor} />);
@@ -23,7 +24,9 @@ export default function Header(props) {
         <View
             style={{
                 flexDirection: "row",
-                flex: 1
+                height: 10,
+                justifyContent: "center",
+                padding: 0
             }}
         >
             {pixels}

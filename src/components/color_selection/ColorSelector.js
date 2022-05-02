@@ -20,7 +20,7 @@ import {
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import ColorSquare from "./ColorSquare";
+import ColorSquare from "../color_selection/ColorSquare";
 
 
 export default function ColorSelector(props) {

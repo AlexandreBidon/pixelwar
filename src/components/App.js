@@ -30,9 +30,9 @@ import {
 
 
 
-import DrawingPanel from './DrawingPanel';
+import DrawingPanel from './drawing_panel/DrawingPanel';
 
-import ColorSelector from './ColorSelector';
+import ColorSelector from './color_selection/ColorSelector';
 
 const App: () => Node = () => {
   console.log("test1")
