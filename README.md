@@ -9,7 +9,7 @@ Pixel-War is an app made with [React Native](https://reactnative.dev/) for a sec
     <img src="./ressources_out/screenshot_pikachu.jpg" alt="drawing" width="180" style = "margin: 0px 20px"/>
 </p>
 <p align="center">
-The app currently look like this
+The app currently looks like this
 </p>
 
 The application features 21 colors. The user can use those colors to draw something on the board. Currently the board is a private one but the goal is to have a shared board. All the users would then be able to draw together.
