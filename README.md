@@ -2,7 +2,7 @@
 Student project at ENSAI
 
 ## Presentation
-![alt text](./ressources_out/screenshot_demo.jpgs)
+![alt text](./ressources_out/screenshot_demo.jpg)
 
 The app currently look like this
 
