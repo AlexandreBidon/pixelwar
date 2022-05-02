@@ -16,13 +16,13 @@ import {
 import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
 
 export default function DrawingPanel(props) {
-    const { length, height, selectedColor } = props;
+    const { length, height, selectedColor, time, resettime } = props;
 
 
     let rows = [];
 
     for (let i = 0; i < height; i++) {
-        rows.push(<Row selectedColor={selectedColor} length={length} key={i} y_id={i} />);
+        rows.push(<Row selectedColor={selectedColor} length={length} key={i} y_id={i} time={time} resettime={resettime} />);
     }
 
     return (

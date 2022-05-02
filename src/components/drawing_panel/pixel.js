@@ -22,11 +22,16 @@ class Pixel extends Component {
             color: "#ffffff",
             x_id: props.x_id,
             y_id: props.y_id,
-            selectedColor: props.selectedColor
+            selectedColor: props.selectedColor,
+            time: props.time,
+            resettime: props.resettime
         }
         this.updateColor = () => {
-            this.setState({ color: this.state.selectedColor })
-            console.log("Placed a pixel in " + this.state.x_id + "," + this.state.y_id + " with color " + this.state.selectedColor)
+            if (this.props.time == 0) {
+                this.setState({ color: this.state.selectedColor })
+                this.state.resettime(5)
+                console.log("Placed a pixel in " + this.state.x_id + "," + this.state.y_id + " with color " + this.state.selectedColor)
+            }
         }
 
     }

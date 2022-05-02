@@ -13,11 +13,11 @@ import {
 } from 'react-native';
 
 export default function Row(props) {
-    const { y_id, selectedColor, length } = props;
+    const { y_id, selectedColor, length, time, resettime } = props;
     let pixels = [];
 
     for (let i = 0; i < length; i++) {
-        pixels.push(<Pixel key={i} x_id={i} y_id={y_id} selectedColor={selectedColor} />);
+        pixels.push(<Pixel key={i} x_id={i} y_id={y_id} selectedColor={selectedColor} time={time} resettime={resettime} />);
     }
 
     return (

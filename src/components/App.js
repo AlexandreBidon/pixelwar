@@ -37,17 +37,26 @@ import ColorSelector from './color_selection/ColorSelector';
 import DrawHeader from './header/Header';
 
 const App: () => Node = () => {
-  console.log("test1")
+
   const [selectedColor, setSelectedColor] = useState('red');
+
+  const [counter, setCounter] = React.useState(5);
+
+  React.useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+    return () => clearInterval(timer);
+  }, [counter]);
+
   return (
     <View
       style={{
         flex: 1,
         overflow: 'hidden',
       }}>
-      <DrawHeader selectedColor={selectedColor} />
+      <DrawHeader selectedColor={selectedColor} time={counter} />
 
-      <DrawingPanel length={37} height={57} selectedColor={selectedColor} />
+      <DrawingPanel length={37} height={57} selectedColor={selectedColor} time={counter} resettime={setCounter} />
 
       <View style={{
         flex: 1,
@@ -62,47 +71,5 @@ const App: () => Node = () => {
     </View >
   );
 };
-
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#e7e7e7',
-    paddingBottom: 1,
-  },
-  zoomWrapper: {
-    flex: 1,
-    overflow: 'hidden',
-  },
-  header: {
-    flexDirection: "row",
-    backgroundColor: 'dimgrey',
-    paddingTop: 10,
-    paddingBottom: 10,
-    justifyContent: "flex-start",
-    alignContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    color: '#fff',
-    fontSize: 40,
-  }
-});
 
 export default App;

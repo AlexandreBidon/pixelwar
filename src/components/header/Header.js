@@ -14,12 +14,15 @@ import { Component } from "react/cjs/react.production.min";
 
 import ColorIndicator from "./ColorIndicator";
 
+import Timer from "./Timer";
+
 class DrawHeader extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            selectedColor: props.selectedColor
+            selectedColor: props.selectedColor,
+            time: props.time
         }
     }
 
@@ -29,18 +32,23 @@ class DrawHeader extends Component {
             return {
                 selectedColor: props.selectedColor
             };
-        }        // Return null to indicate no change to state.
-        return null;
+        }
+        else {
+            if (props.time !== state.time) {
+                return {
+                    time: props.time
+                };
+            }        // Return null to indicate no change to state.
+            return null;
+        }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log('Header update')
-    }
+
 
 
     shouldComponentUpdate(nextProps, nextState) {
         //Only update a pixel if the new color is differend from the previous one
-        if (this.state.selectedColor === nextState.selectedColor) {
+        if (this.state.selectedColor === nextState.selectedColor & this.state.time === nextState.time) {
             return false
         }
         return true
@@ -58,10 +66,7 @@ class DrawHeader extends Component {
                 alignItems: 'center',
             }}>
                 <ColorIndicator selectedColor={this.state.selectedColor} />
-                <Text style={{
-                    fontSize: 24,
-                    fontWeight: '600',
-                }}>TIMER PLACEHOLDER</Text>
+                <Timer time={this.state.time} />
             </View>
         )
     }
