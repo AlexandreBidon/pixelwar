@@ -2,7 +2,7 @@
 
 ## Presentation
 
-Pixel-War is an app made with [React Native](https://reactnative.dev/) for a second year project at ENSAI. 
+Pixel-War is an app made with [React Native](https://reactnative.dev/) for a second year project at ENSAI. The project is inspired by [r/place](https://www.reddit.com/r/place/) from Reddit.
 
 <p align="center">
     <img src="./ressources_out/screenshot_demo.jpg" alt="drawing" width="180" style = "margin: 0px 20px"/>
