@@ -14,10 +14,14 @@ The app currently look like this
 
 The application features 21 colors. The user can use those colors to draw something on the board. Currently the board is a private one but the goal is to have a shared board. All the users would then be able to draw together.
 
+### Install the application
+
+You can install the APK available in the [Releases](https://github.com/AlexandreBidon/pixelwar/releases) section of Github. The application is currently in alpha.
+
 ## Performance Optimization
 
 
-The application was really slow in the first version. In fact, each pixel was rerendered every time a new color was choosen. In order to reduce the number of rendering, the method ``shouldComponentUpdate`` was used. Now a pixel is rerendered only the next color is different from the current one.
+The application was really slow in the first version. In fact, each pixel was rerendered every time a new color was choosen. In order to reduce the number of rendering, the method ``shouldComponentUpdate`` was used. Now a pixel is rerendered only if the next color is different from the current one.
 
 ## TODO
 
