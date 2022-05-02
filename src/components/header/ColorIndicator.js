@@ -10,6 +10,7 @@ import {
     View,
 } from 'react-native';
 import { render } from "react-native/Libraries/Renderer/implementations/ReactNativeRenderer-prod";
+import { Component } from "react/cjs/react.production.min";
 
 
 
@@ -49,7 +50,7 @@ class ColorIndicator extends Component {
         return (
 
             <View style={{
-                backgroundColor: selectedColor,
+                backgroundColor: this.state.selectedColor,
                 height: 45,
                 width: 45,
                 borderRadius: 10

@@ -10,10 +10,11 @@ import {
     View,
 } from 'react-native';
 import { render } from "react-native/Libraries/Renderer/implementations/ReactNativeRenderer-prod";
+import { Component } from "react/cjs/react.production.min";
 
 import ColorIndicator from "./ColorIndicator";
 
-class Pixel extends Component {
+class DrawHeader extends Component {
 
     constructor(props) {
         super(props);
@@ -33,13 +34,13 @@ class Pixel extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('PixelDidUpdate at ' + this.state.x_id + "," + this.state.y_id)
+        console.log('Header update')
     }
 
 
     shouldComponentUpdate(nextProps, nextState) {
         //Only update a pixel if the new color is differend from the previous one
-        if (this.state.color === nextState.color) {
+        if (this.state.selectedColor === nextState.selectedColor) {
             return false
         }
         return true
@@ -56,7 +57,7 @@ class Pixel extends Component {
                 alignContent: 'center',
                 alignItems: 'center',
             }}>
-                <ColorIndicator selectedColor={this.state.selectedColor}></ColorIndicator>
+                <ColorIndicator selectedColor={this.state.selectedColor} />
                 <Text style={{
                     fontSize: 24,
                     fontWeight: '600',
@@ -65,3 +66,5 @@ class Pixel extends Component {
         )
     }
 }
+
+export default DrawHeader;

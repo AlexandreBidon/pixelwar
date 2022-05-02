@@ -34,6 +34,8 @@ import DrawingPanel from './drawing_panel/DrawingPanel';
 
 import ColorSelector from './color_selection/ColorSelector';
 
+import DrawHeader from './header/Header';
+
 const App: () => Node = () => {
   console.log("test1")
   const [selectedColor, setSelectedColor] = useState('red');
@@ -43,26 +45,7 @@ const App: () => Node = () => {
         flex: 1,
         overflow: 'hidden',
       }}>
-      <View style={{
-        flexDirection: "row",
-        backgroundColor: 'dimgrey',
-        paddingTop: 10,
-        paddingBottom: 10,
-        justifyContent: "space-evenly",
-        alignContent: 'center',
-        alignItems: 'center',
-      }}>
-        <View style={{
-          backgroundColor: selectedColor,
-          height: 45,
-          width: 45,
-          borderRadius: 10
-        }}></View>
-        <Text style={{
-          fontSize: 24,
-          fontWeight: '600',
-        }}>TIMER PLACEHOLDER</Text>
-      </View>
+      <DrawHeader selectedColor={selectedColor} />
 
       <DrawingPanel length={37} height={57} selectedColor={selectedColor} />
 
