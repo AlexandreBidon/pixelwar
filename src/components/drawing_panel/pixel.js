@@ -28,22 +28,12 @@ class Pixel extends Component {
         }
         this.updateColor = () => {
             if (this.props.time == 0) {
-                this.setState({ color: this.state.selectedColor })
+                this.setState({ color: this.props.selectedColor })
                 this.state.resettime(5)
-                console.log("Placed a pixel in " + this.state.x_id + "," + this.state.y_id + " with color " + this.state.selectedColor)
+                console.log("Placed a pixel in " + this.state.x_id + "," + this.state.y_id + " with color " + this.props.selectedColor)
             }
         }
 
-    }
-
-    static getDerivedStateFromProps(props, state) {
-        //Update the selectedColor if it was changed
-        if (props.selectedColor !== state.selectedColor) {
-            return {
-                selectedColor: props.selectedColor
-            };
-        }        // Return null to indicate no change to state.
-        return null;
     }
 
     componentDidUpdate(prevProps, prevState) {
