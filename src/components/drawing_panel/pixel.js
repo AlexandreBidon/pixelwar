@@ -19,16 +19,17 @@ class Pixel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            color: "#ffffff",
             x_id: props.x_id,
             y_id: props.y_id,
             selectedColor: props.selectedColor,
             time: props.time,
-            resettime: props.resettime
+            resettime: props.resettime,
+            color_test: props.color_test,
+            update_matrix: props.update_matrix
         }
         this.updateColor = () => {
             if (this.props.time == 0) {
-                this.setState({ color: this.props.selectedColor })
+                this.state.update_matrix(this.state.x_id, this.state.y_id, this.props.selectedColor)
                 this.state.resettime(5)
                 console.log("Placed a pixel in " + this.state.x_id + "," + this.state.y_id + " with color " + this.props.selectedColor)
             }
@@ -42,8 +43,8 @@ class Pixel extends Component {
 
 
     shouldComponentUpdate(nextProps, nextState) {
-        //Only update a pixel if the new color is differend from the previous one
-        if (this.state.color === nextState.color) {
+        //Only update a pixel if the new color is different from the previous one
+        if (this.props.color_test === nextProps.color_test) {
             return false
         }
         return true
@@ -65,7 +66,7 @@ class Pixel extends Component {
                         height: 10,
                         /* flex: 1,
                         aspectRatio: 1, */
-                        backgroundColor: this.state.color,
+                        backgroundColor: this.props.color_test,
                     }} >
                 </View>
             </TouchableHighlight >);
