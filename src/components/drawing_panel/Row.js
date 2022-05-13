@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 export default function Row(props) {
-    const { y_id, selectedColor, length, time, resettime, color_row, update_matrix } = props;
+    const { y_id, selectedColor, length, time, resettime, color_row, update_matrix, web_socket } = props;
     let pixels = [];
 
     for (let i = 0; i < length; i++) {
@@ -26,7 +26,8 @@ export default function Row(props) {
                 time={time}
                 resettime={resettime}
                 color_test={color_row[i]}
-                update_matrix={update_matrix} />);
+                update_matrix={update_matrix}
+                web_socket={web_socket} />);
     }
 
     return (

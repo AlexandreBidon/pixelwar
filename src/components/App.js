@@ -37,7 +37,7 @@ import ColorSelector from './color_selection/ColorSelector';
 import DrawHeader from './header/Header';
 
 const App: () => Node = () => {
-  var ws = React.useRef(new WebSocket('ws://51.91.209.204:8000/ws')).current;
+
   const [selectedColor, setSelectedColor] = useState('red');
 
   const [counter, setCounter] = React.useState(5);
@@ -64,7 +64,13 @@ const App: () => Node = () => {
   }, [counter]);
 
   React.useEffect(() => {
+    const ws = new WebSocket('ws://51.91.209.204:8000/ws')
     ws.onopen = () => {
+      ws.onmessage = (e) => {
+        var message = JSON.parse(e.data)
+        console.log("Set matrix")
+        setColorMatrix(message)
+      }
       console.log("Websocket open")
     };
 
@@ -74,6 +80,11 @@ const App: () => Node = () => {
 
     ws.onmessage = (e) => {
       console.log("Received message")
+      var message = JSON.parse(e.data)
+      var matrix = color_matrix
+      matrix[message["y"]][message["x"]] = message["color"]
+      setColorMatrix(matrix)
+      console.log(e.data)
     };
   }, [])
 
@@ -92,7 +103,8 @@ const App: () => Node = () => {
         time={counter}
         resettime={setCounter}
         color_matrix={color_matrix}
-        update_matrix={update_matrix} />
+        update_matrix={update_matrix}
+        web_socket={ws} />
 
       <View style={{
         flex: 1,

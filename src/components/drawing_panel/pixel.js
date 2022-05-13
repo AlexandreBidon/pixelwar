@@ -25,11 +25,13 @@ class Pixel extends Component {
             time: props.time,
             resettime: props.resettime,
             color_test: props.color_test,
-            update_matrix: props.update_matrix
+            update_matrix: props.update_matrix,
+            web_socket: props.web_socket
         }
         this.updateColor = () => {
             if (this.props.time == 0) {
                 this.state.update_matrix(this.state.x_id, this.state.y_id, this.props.selectedColor)
+                this.state.web_socket.send({ "x": this.state.x_id, "y": this.state.y_id, "color": this.props.selectedColor })
                 this.state.resettime(5)
                 console.log("Placed a pixel in " + this.state.x_id + "," + this.state.y_id + " with color " + this.props.selectedColor)
             }
