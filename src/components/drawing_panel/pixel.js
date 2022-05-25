@@ -30,8 +30,7 @@ class Pixel extends Component {
         }
         this.updateColor = () => {
             if (this.props.time == 0) {
-                this.state.update_matrix(this.state.x_id, this.state.y_id, this.props.selectedColor)
-                this.state.web_socket.send({ "x": this.state.x_id, "y": this.state.y_id, "color": this.props.selectedColor })
+                this.state.web_socket.send(JSON.stringify({ "x": this.state.x_id, "y": this.state.y_id, "color": this.props.selectedColor }))
                 this.state.resettime(5)
                 console.log("Placed a pixel in " + this.state.x_id + "," + this.state.y_id + " with color " + this.props.selectedColor)
             }
@@ -40,13 +39,13 @@ class Pixel extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('PixelDidUpdate at ' + this.state.x_id + "," + this.state.y_id)
+        console.log('PixelDidUpdate at ' + this.state.x_id + "," + this.state.y_id + "with color " + this.props.color_test)
     }
 
 
     shouldComponentUpdate(nextProps, nextState) {
         //Only update a pixel if the new color is different from the previous one
-        if (this.props.color_test === nextProps.color_test) {
+        if (this.props.color_test == nextProps.color_test) {
             return false
         }
         return true

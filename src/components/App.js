@@ -36,6 +36,8 @@ import ColorSelector from './color_selection/ColorSelector';
 
 import DrawHeader from './header/Header';
 
+const ws = new WebSocket('ws://51.91.209.204:8000/ws')
+
 const App: () => Node = () => {
 
   const [selectedColor, setSelectedColor] = useState('red');
@@ -54,7 +56,12 @@ const App: () => Node = () => {
   const [color_matrix, setColorMatrix] = React.useState(matrix);
 
   const update_matrix = (x, y, color) => {
-    color_matrix[y][x] = color
+    let clone_matrix = [...color_matrix]
+    let clone_row = [...clone_matrix[y]]
+    clone_row[x] = color
+    clone_matrix[y] = clone_row
+    setColorMatrix(clone_matrix)
+    console.log(color_matrix)
   }
 
   React.useEffect(() => {
@@ -63,13 +70,28 @@ const App: () => Node = () => {
     return () => clearInterval(timer);
   }, [counter]);
 
+
+
   React.useEffect(() => {
-    const ws = new WebSocket('ws://51.91.209.204:8000/ws')
+
     ws.onopen = () => {
+
       ws.onmessage = (e) => {
         var message = JSON.parse(e.data)
-        console.log("Set matrix")
-        setColorMatrix(message)
+        console.log("Received message")
+        console.log(message)
+        if (message.type == "init") {
+          var message_content = JSON.parse(message.message)
+          setColorMatrix(message_content)
+        }
+        if (message.type == "update") {
+          console.log("received update!")
+          var message_content = JSON.parse(message.message)
+          console.log(color_matrix)
+          update_matrix(message_content["x"], message_content["y"], message_content["color"])
+
+        }
+        //ws.send('{ "x": 5, "y": 5, "color": "#ffffff" }')
       }
       console.log("Websocket open")
     };
@@ -78,15 +100,12 @@ const App: () => Node = () => {
       console.log("Websocket disconnected")
     };
 
-    ws.onmessage = (e) => {
-      console.log("Received message")
-      var message = JSON.parse(e.data)
-      var matrix = color_matrix
-      matrix[message["y"]][message["x"]] = message["color"]
-      setColorMatrix(matrix)
-      console.log(e.data)
-    };
+
+
   }, [])
+
+
+  React.useEffect(() => { }, [color_matrix])
 
   return (
     <View
@@ -104,7 +123,8 @@ const App: () => Node = () => {
         resettime={setCounter}
         color_matrix={color_matrix}
         update_matrix={update_matrix}
-        web_socket={ws} />
+        web_socket={ws}
+      />
 
       <View style={{
         flex: 1,
